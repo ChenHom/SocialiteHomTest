@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -59,8 +60,7 @@ class LoginController extends Controller
             $user = Socialite::driver('github')->user();
             dd($user);
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            return redirect('/login');
         }
-        // $user->token;
     }
 }
