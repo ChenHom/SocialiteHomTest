@@ -61,6 +61,7 @@ class LoginController extends Controller
             \Auth::login($user, true);
             return redirect('/');
         } catch (\Throwable $th) {
+            dd($th->getMessage());
             return redirect('/login');
         }
     }
