@@ -17,7 +17,7 @@ return [
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => 'https://socialitehomtest.herokuapp.com',
+        'redirect' => 'https://socialitehomtest.herokuapp.com/login/github/callback',
     ],
 
     'mailgun' => [
