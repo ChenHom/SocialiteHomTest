@@ -61,7 +61,7 @@ class LoginController extends Controller
             \Illuminate\Support\Facades\Auth::login($user, true);
             return redirect('/');
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            dd($th->getMessage(), $th->getLine());
             return redirect('/login');
         }
     }
