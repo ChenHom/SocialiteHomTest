@@ -59,7 +59,7 @@ class LoginController extends Controller
             $user = Socialite::driver('github')->user();
             dd($user->token);
         } catch (\Throwable $th) {
-            \Log::debug($th->getMessage());
+            dd($th->getMessage());
         }
         // $user->token;
     }
