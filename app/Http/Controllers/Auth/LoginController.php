@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Redirect;
+use App\Entities\User;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -57,10 +60,26 @@ class LoginController extends Controller
     {
         try {
             $user = Socialite::driver('github')->user();
-            dd($user);
+            $this->createOrFindUser($user);
+            Auth::login($user, true);
+            return redirect('/');
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            dd($th->getMessage(), $th->getLine());
+            return redirect('/login');
         }
-        // $user->token;
+    }
+
+    public function createOrFindUser($user)
+    {
+        if($loginUser = User::where('third_party_id', $user->id)->first()) {
+            return $loginUser;
+        }
+        return User::create([
+            'name' => $user->name,
+            'third_party_id' => $user->id,
+            'nick_name' => $user->nickname,
+            'email' => $user->email,
+            'avatar' => $user->avatar
+        ]);
     }
 }
