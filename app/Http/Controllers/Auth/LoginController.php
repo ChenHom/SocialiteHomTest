@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -59,7 +58,7 @@ class LoginController extends Controller
     {
         try {
             $this->createOrFindUser($user = Socialite::driver('github')->user());
-            Auth::login($user, true);
+            \Illuminate\Support\Facades\Auth::login($user, true);
             return redirect('/');
         } catch (\Throwable $th) {
             dd($th->getMessage());
