@@ -73,13 +73,13 @@ class LoginController extends Controller
         if($loginUser = User::where('third_party_id', $user->id)->first()) {
             return $loginUser;
         }
-
-        return User::create([
-            'name' => $user->name,
-            'third_party_id' => $user->third_party_id,
-            'nick_name' => $user->nickname,
-            'email' => $user->email,
-            'avatar' => $user->avatar
-        ]);
+dd($user);
+        // return User::create([
+        //     'name' => $user->name,
+        //     'third_party_id' => $user->,
+        //     'nick_name' => $user->nickname,
+        //     'email' => $user->email,
+        //     'avatar' => $user->avatar
+        // ]);
     }
 }
