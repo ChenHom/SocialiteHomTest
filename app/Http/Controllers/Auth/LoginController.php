@@ -59,7 +59,8 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         try {
-            $this->createOrFindUser($user = Socialite::driver('github')->user());
+            $user = Socialite::driver('github')->user();
+            $this->createOrFindUser($user);
             Auth::login($user, true);
             return redirect('/');
         } catch (\Throwable $th) {
