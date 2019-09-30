@@ -62,7 +62,7 @@ class LoginController extends Controller
             $user = Socialite::driver('github')->user();
             $user = $this->createOrFindUser($user);
             Auth::login($user, true);
-            return redirect('/');
+            return redirect('home');
         } catch (\Throwable $th) {
             dd($th->getMessage(), $th->getLine());
             return redirect('/login');
