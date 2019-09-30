@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('third_party_id')
                 ->default(0)
                 ->comment('第三方登入的id');
-            $table->string('name')->nullable();
+            $table->string('name')->default('')->nullable();
             $table->string('nick_name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
